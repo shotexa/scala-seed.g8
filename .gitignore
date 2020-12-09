@@ -1,8 +1,10 @@
+.vscode/
+.bloop/
+.metals/
+.idea/
 .DS_Store
 target/
 boot/
 lib_managed/
 src_managed/
 project/plugins/project/
-.vscode
-.metals

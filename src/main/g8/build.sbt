@@ -1,5 +1,5 @@
-ThisBuild / organization := "com.shotexa"
-ThisBuild / scalaVersion := "2.13.4"
+ThisBuild / organization := "$organization;format="lower,package"$"
+ThisBuild / scalaVersion := "$scala_version$"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 
 ThisBuild / scalacOptions ++= Seq(
@@ -15,7 +15,7 @@ ThisBuild / wartremoverErrors ++= Warts.unsafe
 
 lazy val root = (project in file(".")).
   settings(
-    name := "scala2-seed", // change this
+    name := "$name;format="lower,word"$",
     libraryDependencies ++= dependencies
   )
 
@@ -28,8 +28,3 @@ lazy val coreDependencies = Seq(
 lazy val testDependencies = Seq(
     // custom test dependencies
 ) ++ Dependencies.test.map(_ % Test)
-
-
-
-
-// Generate from template: <github link>

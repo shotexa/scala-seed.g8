@@ -1,4 +1,4 @@
-package com.shotexa
+package $organization;format="lower,package"$
 package test
 
 import org.scalatest._

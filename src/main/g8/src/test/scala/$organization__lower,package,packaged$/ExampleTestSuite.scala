@@ -1,4 +1,4 @@
-package com.shotexa
+package $organization;format="lower,package"$
 package test
 
 class ExampleTestSuite extends TestSuite {

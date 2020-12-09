@@ -9,11 +9,11 @@ object Util {
   def prompt(projectName: String): String =
     gitPrompt
       .fold(projectPrompt(projectName)) { g =>
-        s"$g:${projectPrompt(projectName)}"
+        s"\$g:\${projectPrompt(projectName)}"
       }
 
   private def projectPrompt(projectName: String): String =
-    s"sbt:${styled(projectName)}"
+    s"sbt:\${styled(projectName)}"
 
   def projectName(state: State): String =
     Project
@@ -25,7 +25,7 @@ object Util {
     for {
       b <- branch.map(styled)
       h <- hash.map(styled)
-    } yield s"git:$b:$h"
+    } yield s"git:\$b:\$h"
 
   private def branch: Option[String] =
     run("git rev-parse --abbrev-ref HEAD")

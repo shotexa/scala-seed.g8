@@ -8,10 +8,10 @@ ThisBuild / turbo := true
 ThisBuild / watchForceTriggerOnAnyChange := true
 ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
-ThisBuild / shellPrompt := { state => s"${prompt(projectName(state))}> " }
+ThisBuild / shellPrompt := { state => s"\${prompt(projectName(state))}> " }
 
 Global / excludeLintKeys ++= Set(
   name,
-  autoStartServer
+  autoStartServer,
 )
 
