@@ -12,6 +12,5 @@ ThisBuild / shellPrompt := { state => s"\${prompt(projectName(state))}> " }
 
 Global / excludeLintKeys ++= Set(
   name,
-  autoStartServer,
+  autoStartServer
 )
-

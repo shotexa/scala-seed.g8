@@ -42,7 +42,6 @@ object Util {
         .trim
     ).toOption
 
-
   val cctt: String =
     "compile->compile;test->test" // for multi-build dependencies
 }
