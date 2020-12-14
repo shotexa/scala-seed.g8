@@ -1,7 +1,13 @@
- My personal [Giter8][g8] template
+My personal [Giter8][g8] template
 
-Template license
-----------------
+
+## Description
+
+This is a multi-build project boilerplate, comes with 2 subprojects: `main` and `util`, it is designed to be easily extendable and does not require additional configuration.
+
+
+## Template license
+
 Written in 2020 by Shota Jolbordi <shota.jolbordi@protonmail.com>
 
 To the extent possible under law, the author(s) have dedicated all copyright and related
