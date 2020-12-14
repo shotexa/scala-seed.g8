@@ -11,20 +11,3 @@ ThisBuild / scalacOptions ++= Seq(
 )
 
 ThisBuild / wartremoverErrors ++= Warts.unsafe
-
-
-lazy val root = (project in file(".")).
-  settings(
-    name := "$name;format="lower,word"$",
-    libraryDependencies ++= dependencies
-  )
-
-
-lazy val dependencies = coreDependencies ++ testDependencies
-
-lazy val coreDependencies = Seq(
-    // custom core dependencies
-) ++ Dependencies.core
-lazy val testDependencies = Seq(
-    // custom test dependencies
-) ++ Dependencies.test.map(_ % Test)
