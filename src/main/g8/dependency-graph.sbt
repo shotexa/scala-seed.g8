@@ -6,7 +6,7 @@ lazy val `$name;format="norm"$` = project
   .settings(
     name := "$name;format="norm"$"
   )
-  .aggregate(main)
+  .aggregate(main, util)
 
 lazy val main = project
   .in(file("./main"))
