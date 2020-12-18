@@ -4,5 +4,6 @@ addCommandAlias(
 )
 addCommandAlias("cd", "project")
 addCommandAlias("ls", "projects")
+addCommandAlias("ll", "projects")
 addCommandAlias("run", "main/run")
-addCommandAlias("gen", "g8Scaffold")
+addCommandAlias("gen", "$name;format="norm"$/g8Scaffold")
