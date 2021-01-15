@@ -1,6 +1,11 @@
 import Util._
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
+Global / excludeLintKeys ++= Set(
+  name,
+  autoStartServer
+)
+
 Test / testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-oSD")
 Test / parallelExecution := false
 
@@ -11,7 +16,3 @@ ThisBuild / watchBeforeCommand := Watch.clearScreen
 ThisBuild / watchTriggeredMessage := Watch.clearScreenOnTrigger
 ThisBuild / shellPrompt := { state => s"\${prompt(projectName(state))}> " }
 
-Global / excludeLintKeys ++= Set(
-  name,
-  autoStartServer
-)
