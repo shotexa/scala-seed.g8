@@ -7,7 +7,7 @@ ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-language:_",
   "-unchecked",
-  "-Xfatal-warnings"
+  "-Xfatal-warnings" // TODO: only apply if inside CI
 )
 
 ThisBuild / wartremoverErrors ++= Warts.unsafe
