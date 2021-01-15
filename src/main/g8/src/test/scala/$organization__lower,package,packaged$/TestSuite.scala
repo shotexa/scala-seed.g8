@@ -2,15 +2,16 @@ package $organization;format="lower,package"$
 package test
 
 import org.scalatest._
-import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 trait TestSuite
-    extends AnyFunSuite
+    extends AnyFunSpec
       with Matchers
-      with BeforeAndAfter
       with BeforeAndAfterEach
+      with BeforeAndAfter
+      with BeforeAndAfterAll
       with ScalaCheckPropertyChecks {
 
   override implicit val generatorDrivenConfig =
