@@ -1,6 +1,5 @@
 import Util._
 
-// Aggregator
 lazy val `$name;format="norm"$` = project
   .in(file("."))
   .settings(
