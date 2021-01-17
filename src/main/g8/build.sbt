@@ -2,46 +2,48 @@ ThisBuild / organization := "$organization;format="lower,package"$"
 ThisBuild / scalaVersion := "$scala_version$"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 
-ThisBuild / scalacOptions ++= Seq(
-  "-deprecation",
-  "-feature",
+ThisBuild / scalacOptions ++= Seq("-encoding", "utf8") // encoding
+ThisBuild / scalacOptions ++= Seq(                     // warnings
   "-language:_",
-  "-unchecked"
-  // "-Xfatal-warnings" // TODO: only apply if inside CI
+  "-Wunused:_",
+  "-Xlint:_",
+  "-Wdead-code"
 )
+ThisBuild / scalacOptions += { // scalac warnings
+  (ThisBuild / scalacWarningSeverity).value match {
+    case WarningSeverity.Low    => "-Wconf:any:silent"
+    case WarningSeverity.Medium => "-Wconf:any:warning"
+    case WarningSeverity.High   => "-Wconf:any:error"
+  }
+}
 
-/**
-  * Ignored warts:
-  * - DefaultArguments
-  * - Equals // requires more work
-  * - FinalVal
-  * - ImplicitConversion
-  * - ImplicitParameter
-  * - JavaSerializable
-  * - LeakingSealed
-  * - MutableDataStructures
-  * - Nothing
-  * - Null
-  * - Overloading
-  * - Throw
-  * - ToString
-  * - Var
-  * - While
-  */
+ThisBuild / wartremoverErrors ++= {
+  (ThisBuild / wartRemoverWarningSeverity).value match {
+    case WarningSeverity.Low | WarningSeverity.Medium => hightPriorityWarts
+    case WarningSeverity.High                         => hightPriorityWarts ++ mediumPriorityWarts
+  }
+}
 
-ThisBuild / wartremoverErrors ++= Seq(
+ThisBuild / wartremoverWarnings ++= {
+  (ThisBuild / wartRemoverWarningSeverity).value match {
+    case WarningSeverity.Medium => mediumPriorityWarts
+    case WarningSeverity.High   => lowPriorityWarts
+    case _                      => Seq()
+  }
+}
+
+lazy val hightPriorityWarts = Seq(
   Wart.ArrayEquals,
   Wart.PublicInference,
   Wart.ExplicitImplicitTypes,
   Wart.FinalCaseClass,
   Wart.JavaConversions,
-  Wart.Return,
+  Wart.Return
 )
 
-ThisBuild / wartremoverWarnings ++= Seq(
+lazy val mediumPriorityWarts = Seq(
   Wart.NonUnitStatements,
   Wart.StringPlusAny,
-  Wart.Any,
   Wart.AnyVal,
   Wart.AsInstanceOf,
   Wart.IsInstanceOf,
@@ -54,5 +56,23 @@ ThisBuild / wartremoverWarnings ++= Seq(
   Wart.Serializable,
   Wart.TraversableOps,
   Wart.TryPartial,
+  Wart.Null
 )
 
+lazy val lowPriorityWarts = Seq(
+  Wart.DefaultArguments,
+  Wart.Equals,
+  Wart.FinalVal,
+  Wart.ImplicitConversion,
+  Wart.ImplicitParameter,
+  Wart.JavaSerializable,
+  Wart.LeakingSealed,
+  Wart.MutableDataStructures,
+  Wart.Nothing,
+  Wart.Overloading,
+  Wart.Throw,
+  Wart.ToString,
+  Wart.Var,
+  Wart.While,
+  Wart.Any
+)
