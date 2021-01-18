@@ -7,7 +7,6 @@ ThisBuild / scalaVersion := "$scala_version$"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / scalacWarningSeverity := WarningSeverity.High
 ThisBuild / wartRemoverWarningSeverity := WarningSeverity.Low
-
 ThisBuild / scalacOptions ++= Seq("-encoding", "utf8") // encoding
 ThisBuild / scalacOptions ++= Seq(                     // warnings
   "-language:_",
@@ -17,7 +16,7 @@ ThisBuild / scalacOptions ++= Seq(                     // warnings
 )
 ThisBuild / scalacOptions += { // scalac warnings
   (ThisBuild / scalacWarningSeverity).value match {
-    case WarningSeverity.Low    => "-Wconf:any:silent"    
+    case WarningSeverity.Low    => "-Wconf:any:silent"
     case WarningSeverity.Medium => "-Wconf:any:warning"
     case WarningSeverity.High   => "-Wconf:any:error"
   }
@@ -25,16 +24,17 @@ ThisBuild / scalacOptions += { // scalac warnings
 
 ThisBuild / wartremoverErrors ++= {
   (ThisBuild / wartRemoverWarningSeverity).value match {
-    case WarningSeverity.High                         => hightPriorityWarts ++ mediumPriorityWarts
-    case _                                            => hightPriorityWarts
+    case WarningSeverity.Low    => hightPriorityWarts
+    case WarningSeverity.Medium => hightPriorityWarts
+    case WarningSeverity.High   => hightPriorityWarts ++ mediumPriorityWarts
   }
 }
 
 ThisBuild / wartremoverWarnings ++= {
   (ThisBuild / wartRemoverWarningSeverity).value match {
+    case WarningSettings.Low    => Seq()
     case WarningSeverity.Medium => mediumPriorityWarts
     case WarningSeverity.High   => lowPriorityWarts
-    case _                      => Seq()
   }
 }
 
