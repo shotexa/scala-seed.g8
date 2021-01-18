@@ -1,12 +1,12 @@
 import WarningSettings._
 import WarningSettings.Keys._
 
-
 ThisBuild / organization := "$organization;format="lower,package"$"
 ThisBuild / scalaVersion := "$scala_version$"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 ThisBuild / scalacWarningSeverity := WarningSeverity.High
 ThisBuild / wartRemoverWarningSeverity := WarningSeverity.Low
+
 ThisBuild / scalacOptions ++= Seq("-encoding", "utf8") // encoding
 ThisBuild / scalacOptions ++= Seq(                     // warnings
   "-language:_",
