@@ -32,7 +32,7 @@ ThisBuild / wartremoverErrors ++= {
 
 ThisBuild / wartremoverWarnings ++= {
   (ThisBuild / wartRemoverWarningSeverity).value match {
-    case WarningSettings.Low    => Seq()
+    case WarningSeverity.Low    => Seq()
     case WarningSeverity.Medium => mediumPriorityWarts
     case WarningSeverity.High   => lowPriorityWarts
   }
